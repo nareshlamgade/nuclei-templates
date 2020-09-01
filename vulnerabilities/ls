@@ -1,0 +1,25 @@
+id: aem-detector
+
+info:
+  name: AEM Web App Identified
+  author: Naresh LamGade
+  severity: High
+  description: AEM Information Disclosure.
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/.json"
+      - "{{BaseURL}}/.children.json?Sdk.html"
+      
+
+    matchers:
+    - type: word
+      words:
+       - "jcr:primaryType"
+       - "jcr:"
+       - "jcr:createdBy"
+       - "jcr:created"
+
+      part: body
+      condition: or
